@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
                 }
             }
         }
@@ -30,17 +29,59 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun ContactNameLayout(modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun MessagesLayout(modifier: Modifier = Modifier) {
+    Text(
+        text = "",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun BottomBarLayout(modifier: Modifier = Modifier) {
+    Text(
+        text = "",
         modifier = modifier
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ContactNamePreview() {
     RapidChatTheme {
-        Greeting("Android")
+        ContactNameLayout()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MessagesPreview() {
+    RapidChatTheme {
+        MessagesLayout()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BottomBarPreview() {
+    RapidChatTheme {
+        BottomBarLayout()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SurfacePreview() {
+    RapidChatTheme {
+        ContactNameLayout()
+        MessagesLayout()
+        BottomBarLayout()
     }
 }
