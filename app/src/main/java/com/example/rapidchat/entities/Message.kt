@@ -1,73 +1,62 @@
-package com.example.rapidchat.entities;
+package com.example.rapidchat.entities
 
-import java.sql.Timestamp;
+import java.sql.Timestamp
 
-public class Message {
+class Message(
+    id: Int,
+    numSender: Int,
+    numReceiver: Int,
+    statusNum: Int,
+    timestamp: Timestamp?,
+    mensaje: String?
+) {
+    private var id = 0
+    private var numSender = 0
+    private var numReceiver = 0
+    private var statusNum = 0
+    private var timestamp: Timestamp? = null
+    private var mensaje = ""
 
-    private int id = 0;
-    private int numSender = 0;
-    private int numReceiver = 0;
-    private int statusNum = 0;
-    private Timestamp timestamp;
-    private String mensaje = "";
-
-    public Message(int id, int numSender, int numReceiver, int statusNum, Timestamp timestamp, String mensaje) {
+    init {
         if (id > 0) {
-            this.id = id;
+            this.id = id
         }
-        String strNumSender = numSender + "";
-        if (strNumSender.length() == 9) {
-            this.numSender = numSender;
+        val strNumSender = numSender.toString() + ""
+        if (strNumSender.length == 9) {
+            this.numSender = numSender
         }
-        String strNumReceiver = numReceiver + "";
-        if (strNumReceiver.length() == 9) {
-            this.numReceiver = numReceiver;
+        val strNumReceiver = numReceiver.toString() + ""
+        if (strNumReceiver.length == 9) {
+            this.numReceiver = numReceiver
         }
         if (statusNum == 1 || statusNum == 2 || statusNum == 3) {
-            this.statusNum = statusNum;
+            this.statusNum = statusNum
         }
-        if (timestamp != null && timestamp.getTime() != 0) {
-            this.timestamp = timestamp;
+        if (timestamp != null && timestamp.time != 0L) {
+            this.timestamp = timestamp
         }
-        if (!mensaje.equals("") && mensaje != null) {
-            this.mensaje = mensaje;
+        if (mensaje != "" && mensaje != null) {
+            this.mensaje = mensaje
         }
     }
 
-    public int getId() {
-        return id;
+    fun getStatusNum(): Int {
+        return statusNum
     }
 
-    public int getNumSender() {
-        return numSender;
-    }
-
-    public int getNumReceiver() {
-        return numReceiver;
-    }
-
-    public int getStatusNum() {
-        return statusNum;
-    }
-
-    public void setStatusNum(int statusNum) {
+    fun setStatusNum(statusNum: Int) {
         if (statusNum == 1 || statusNum == 2 || statusNum == 3) {
-            this.statusNum = statusNum;
+            this.statusNum = statusNum
         }
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    fun getMensaje(): String {
+        return mensaje
     }
 
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        if (!mensaje.equals("") && mensaje != null) {
-            this.mensaje = mensaje;
+    fun setMensaje(mensaje: String?) {
+        if (mensaje != "" && mensaje != null) {
+            this.mensaje = mensaje
         }
     }
-
 }

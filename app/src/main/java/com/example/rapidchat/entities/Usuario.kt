@@ -1,51 +1,49 @@
-package com.example.rapidchat.entities;
+package com.example.rapidchat.entities
 
-public class Usuario {
-    private int numeroTelefono = 0;
-    private String nombre = "";
-    private String apellidos = "";
+class Usuario(numeroTelefono: Int, nombre: String?, apellidos: String?) {
+    private var numeroTelefono = 0
+    private var nombre = ""
+    private var apellidos = ""
 
-    public Usuario(int numeroTelefono, String nombre, String apellidos) {
-        String strNumeroTelefono = numeroTelefono + "";
-        if (strNumeroTelefono.length() == 9) {
-            this.numeroTelefono = numeroTelefono;
+    init {
+        if (numeroTelefono.toString().length == 9) {
+            this.numeroTelefono = numeroTelefono
         }
-        if (!nombre.equals("") && nombre != null) {
-            this.nombre = nombre;
+        if (nombre != "" && nombre != null) {
+            this.nombre = nombre
         }
-        if (!apellidos.equals("") && apellidos != null) {
-            this.nombre = apellidos;
-        }
-    }
-
-    public int getNumeroTelefono() {
-        return numeroTelefono;
-    }
-
-    public void setNumeroTelefono(int numeroTelefono) {
-        String strNumeroTelefono = numeroTelefono + "";
-        if (strNumeroTelefono.length() == 9) {
-            this.numeroTelefono = numeroTelefono;
+        if (apellidos != "" && apellidos != null) {
+            this.nombre = apellidos
         }
     }
 
-    public String getNombre() {
-        return nombre;
+    fun getNumeroTelefono(): Int {
+        return numeroTelefono
     }
 
-    public void setNombre(String nombre) {
-        if (!nombre.equals("") && nombre != null) {
-            this.nombre = nombre;
+    fun setNumeroTelefono(numeroTelefono: Int) {
+        if (numeroTelefono.toString().length == 9) {
+            this.numeroTelefono = numeroTelefono
         }
     }
 
-    public String getApellidos() {
-        return apellidos;
+    fun getNombre(): String {
+        return nombre
     }
 
-    public void setApellidos(String apellidos) {
-        if (!apellidos.equals("") && apellidos != null) {
-            this.nombre = apellidos;
+    fun setNombre(nombre: String?) {
+        if (nombre != "" && nombre != null) {
+            this.nombre = nombre
+        }
+    }
+
+    fun getApellidos(): String {
+        return apellidos
+    }
+
+    fun setApellidos(apellidos: String?) {
+        if (apellidos != "" && apellidos != null) {
+            this.apellidos = apellidos
         }
     }
 
