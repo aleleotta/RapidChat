@@ -59,4 +59,5 @@ class Message(
             this.mensaje = mensaje
         }
     }
+
 }
