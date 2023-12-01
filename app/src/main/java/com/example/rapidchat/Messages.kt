@@ -9,10 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
 
 @Composable
-fun MessagesView(modifier: Modifier = Modifier) {
+fun MessagesView(navController: NavController) {
     ContactNameLayout()
     MessagesLayout()
     BottomBarLayout()

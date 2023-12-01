@@ -3,10 +3,11 @@ package com.example.rapidchat
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
 
 @Composable
-fun ContactView(modifier: Modifier = Modifier) {}
+fun ContactView(navController: NavController) {}
 
 @Composable
 fun TopBar(modifier: Modifier = Modifier) {}
