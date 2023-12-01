@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -65,7 +66,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     fontSize = 25.sp,
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                OutlinedTextField(
+                TextField(
                     value = usernameTextField,
                     onValueChange = {newUsername -> usernameTextField = newUsername},
                     label = {Text(usernameTextField)}
@@ -81,7 +82,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     fontSize = 25.sp,
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                OutlinedTextField(
+                TextField(
                     value = passwordTextField,
                     onValueChange = {newPassword -> passwordTextField = newPassword},
                     label = {Text(passwordTextField)}
