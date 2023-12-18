@@ -26,11 +26,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen() {
+    val navController = rememberNavController()
     var usernameTextField by rememberSaveable {
         mutableStateOf("")
     }
@@ -101,7 +103,9 @@ fun LoginScreen(navController: NavController) {
 }
 
 @Composable
-fun RegisterScreen(navController: NavController) {}
+fun RegisterScreen() {
+    val navController = rememberNavController()
+}
 
 @Preview(showBackground = true)
 @Composable
