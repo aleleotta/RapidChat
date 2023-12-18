@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavControllerHandler().Navigation(navController = navController)
                     navController.navigate("Login")
-                    navController.navigate("Register")
                 }
             }
         }
