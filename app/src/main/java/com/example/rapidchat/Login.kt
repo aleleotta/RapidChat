@@ -73,13 +73,15 @@ fun LoginScreen() {
                     text = "New on RapidChat?",
                     fontSize = 10.sp,
                     modifier = Modifier
-                        .clickable {  }
+                        .clickable {  },
+                    color = Color.Black
                 )
                 Text(
                     text = "Register here!",
                     fontSize = 10.sp,
                     modifier = Modifier
-                        .clickable {  }
+                        .clickable {  },
+                    color = Color.Black
                 )
             }
             topBar()
