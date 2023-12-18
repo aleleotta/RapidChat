@@ -1,17 +1,23 @@
 package com.example.rapidchat
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,6 +35,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
 
+@Composable
+fun topBar() {
+    Row (
+        modifier = Modifier
+            .height(50.dp)
+            .fillMaxWidth()
+            .background(Color(0xFF5C69FF)),
+        verticalAlignment = Alignment.Top,
+    ) {}
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen() {
@@ -39,65 +56,78 @@ fun LoginScreen() {
     var passwordTextField by rememberSaveable {
         mutableStateOf("")
     }
-    Column (
-        modifier = Modifier
-            .background(color = Color(0xFFFFFF))
-            .padding(15.dp)
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+    Surface (
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
     ) {
+        Row(
+            verticalAlignment = Alignment.Top
+        ) {
+            TextButton(onClick = { /*TODO*/ }, modifier = Modifier) {
+                Text(text = "New on RapidChat?\nRegister here!")
+            }
+            topBar()
+        }
         Column (
+            modifier = Modifier
+                .background(color = Color(0xFFFFFF))
+                .padding(15.dp)
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Login",
-                fontSize = 35.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            Spacer(modifier = Modifier.height(70.dp))
-            Row (
-                modifier = Modifier,
-                verticalAlignment = Alignment.CenterVertically
+            Column (
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Username: ",
-                    fontSize = 25.sp,
+                    text = "Login",
+                    fontSize = 35.sp,
+                    fontWeight = FontWeight.SemiBold
                 )
-                Spacer(modifier = Modifier.width(10.dp))
-                TextField(
-                    value = usernameTextField,
-                    onValueChange = {newUsername -> usernameTextField = newUsername},
-                    label = {Text(usernameTextField)}
-                )
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            Row (
-                modifier = Modifier,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Password: ",
-                    fontSize = 25.sp,
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                TextField(
-                    value = passwordTextField,
-                    onValueChange = {newPassword -> passwordTextField = newPassword},
-                    label = {Text(passwordTextField)}
-                )
-            }
-            Spacer(modifier = Modifier.height(70.dp))
-            Button(
-                modifier = Modifier
-                    .width(130.dp)
-                    .height(60.dp),
-                onClick = { /*TODO*/ },
-                content = {
-                    Text(text = "Login", fontSize = 25.sp, fontWeight = FontWeight.SemiBold)
+                Spacer(modifier = Modifier.height(70.dp))
+                Row (
+                    modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Username: ",
+                        fontSize = 25.sp,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    TextField(
+                        value = usernameTextField,
+                        onValueChange = {newUsername -> usernameTextField = newUsername},
+                        label = {Text(usernameTextField)}
+                    )
                 }
-            )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row (
+                    modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Password: ",
+                        fontSize = 25.sp,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    TextField(
+                        value = passwordTextField,
+                        onValueChange = {newPassword -> passwordTextField = newPassword},
+                        label = {Text(passwordTextField)}
+                    )
+                }
+                Spacer(modifier = Modifier.height(70.dp))
+                Button(
+                    modifier = Modifier
+                        .width(130.dp)
+                        .height(60.dp),
+                    onClick = { /*TODO*/ },
+                    content = {
+                        Text(text = "Login", fontSize = 25.sp, fontWeight = FontWeight.SemiBold)
+                    }
+                )
+            }
         }
     }
 }
@@ -105,6 +135,7 @@ fun LoginScreen() {
 @Composable
 fun RegisterScreen() {
     val navController = rememberNavController()
+    topBar()
 }
 
 @Preview(showBackground = true)
