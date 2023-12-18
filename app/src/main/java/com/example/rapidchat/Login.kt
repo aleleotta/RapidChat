@@ -2,6 +2,7 @@ package com.example.rapidchat
 
 import android.graphics.Paint.Align
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -63,8 +65,22 @@ fun LoginScreen() {
         Row(
             verticalAlignment = Alignment.Top
         ) {
-            TextButton(onClick = { /*TODO*/ }, modifier = Modifier) {
-                Text(text = "New on RapidChat?\nRegister here!")
+            Column (
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "New on RapidChat?",
+                    fontSize = 10.sp,
+                    modifier = Modifier
+                        .clickable {  }
+                )
+                Text(
+                    text = "Register here!",
+                    fontSize = 10.sp,
+                    modifier = Modifier
+                        .clickable {  }
+                )
             }
             topBar()
         }
