@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
 
 @Composable
-fun MessagesView(navController: NavController) {
+fun MessagesView() {
     ContactNameLayout()
     MessagesLayout()
     BottomBarLayout()

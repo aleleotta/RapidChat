@@ -4,6 +4,7 @@ import android.graphics.Paint.Align
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
+import java.util.Stack
 
 @Composable
 fun topBar() {
@@ -52,6 +54,7 @@ fun topBar() {
 @Composable
 fun LoginScreen() {
     val navController = rememberNavController()
+    NavControllerHandler().Navigation(navController)
     var usernameTextField by rememberSaveable {
         mutableStateOf("")
     }
@@ -65,6 +68,7 @@ fun LoginScreen() {
         Row(
             verticalAlignment = Alignment.Top
         ) {
+            topBar()
             Column (
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -84,7 +88,6 @@ fun LoginScreen() {
                     color = Color.Black
                 )
             }
-            topBar()
         }
         Column (
             modifier = Modifier
@@ -140,7 +143,7 @@ fun LoginScreen() {
                     modifier = Modifier
                         .width(130.dp)
                         .height(60.dp),
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate("Register") },
                     content = {
                         Text(text = "Login", fontSize = 25.sp, fontWeight = FontWeight.SemiBold)
                     }
@@ -153,6 +156,7 @@ fun LoginScreen() {
 @Composable
 fun RegisterScreen() {
     val navController = rememberNavController()
+    NavControllerHandler().Navigation(navController)
     topBar()
 }
 
