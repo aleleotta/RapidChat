@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavControllerHandler().Navigation(navController)
-                    navController.navigate("Login")
                 }
             }
         }
