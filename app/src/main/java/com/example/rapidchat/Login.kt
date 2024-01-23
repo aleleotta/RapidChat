@@ -35,19 +35,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
 import java.util.Stack
 
 @Composable
-fun topBar() {
+fun topBarLogin(navController: NavHostController) {
     Row (
         modifier = Modifier
             .height(50.dp)
             .fillMaxWidth()
             .background(Color(0xFF5C69FF)),
-        verticalAlignment = Alignment.Top,
-    ) {}
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        TextButton(onClick = { navController.navigate("Register") }) {
+            Text(text = " Register", color = Color.White, fontSize = 20.sp)
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,26 +73,7 @@ fun LoginScreen() {
         Row(
             verticalAlignment = Alignment.Top
         ) {
-            topBar()
-            Column (
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "New on RapidChat?",
-                    fontSize = 10.sp,
-                    modifier = Modifier
-                        .clickable {  },
-                    color = Color.Black
-                )
-                Text(
-                    text = "Register here!",
-                    fontSize = 10.sp,
-                    modifier = Modifier
-                        .clickable {  },
-                    color = Color.Black
-                )
-            }
+            topBarLogin(navController)
         }
         Column (
             modifier = Modifier
@@ -154,10 +140,41 @@ fun LoginScreen() {
 }
 
 @Composable
+fun topBarRegister(navController: NavHostController) {
+    Row (
+        modifier = Modifier
+            .height(50.dp)
+            .fillMaxWidth()
+            .background(Color(0xFF5C69FF)),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        TextButton(onClick = { navController.navigate("Login") }) {
+            Text(text = " Login", color = Color.White, fontSize = 20.sp)
+        }
+    }
+}
+
+@Composable
 fun RegisterScreen() {
     val navController = rememberNavController()
     NavControllerHandler().Navigation(navController)
-    topBar()
+    topBarRegister(navController)
+    var usernameTextField by rememberSaveable {
+        mutableStateOf("")
+    }
+    var passwordTextField by rememberSaveable {
+        mutableStateOf("")
+    }
+    Surface (
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        Row(
+            verticalAlignment = Alignment.Top
+        ) {
+            topBarRegister(navController)
+        }
+    }
 }
 
 @Preview(showBackground = true)
