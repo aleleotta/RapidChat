@@ -1,10 +1,7 @@
 package com.example.rapidchat
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFromBaseline
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.RememberObserver
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -34,14 +30,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.rapidchat.ui.theme.RapidChatTheme
-import java.util.Stack
 
 @Composable
-fun topBarLogin(navController: NavHostController) {
+fun TopBarLogin(navController: NavHostController) {
     Row (
         modifier = Modifier
             .height(50.dp)
@@ -57,9 +51,7 @@ fun topBarLogin(navController: NavHostController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
-    val navController = rememberNavController()
-    NavControllerHandler().Navigation(navController)
+fun LoginScreen(navController: NavHostController) {
     var usernameTextField by rememberSaveable {
         mutableStateOf("")
     }
@@ -70,22 +62,19 @@ fun LoginScreen() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Row(
-            verticalAlignment = Alignment.Top
-        ) {
-            topBarLogin(navController)
-        }
         Column (
             modifier = Modifier
-                .background(color = Color(0xFFFFFF))
-                .padding(15.dp)
+                .background(color = Color(0xFFFFFFFF))
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
         ) {
+            TopBarLogin(navController)
+            Spacer(modifier = Modifier.height(150.dp))
             Column (
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .background(color = Color(0xFFFFFFFF))
+                    .padding(15.dp)
             ) {
                 Text(
                     text = "Login",
@@ -140,7 +129,7 @@ fun LoginScreen() {
 }
 
 @Composable
-fun topBarRegister(navController: NavHostController) {
+fun TopBarRegister(navController: NavHostController) {
     Row (
         modifier = Modifier
             .height(50.dp)
@@ -154,25 +143,100 @@ fun topBarRegister(navController: NavHostController) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen() {
-    val navController = rememberNavController()
-    NavControllerHandler().Navigation(navController)
-    topBarRegister(navController)
+fun RegisterScreen(navController: NavHostController) {
     var usernameTextField by rememberSaveable {
         mutableStateOf("")
     }
     var passwordTextField by rememberSaveable {
         mutableStateOf("")
     }
+    var phoneNumberTextField by rememberSaveable {
+        mutableStateOf("")
+    }
     Surface (
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Row(
-            verticalAlignment = Alignment.Top
+        Column (
+            modifier = Modifier
+                .background(color = Color(0xFFFFFFFF))
+                .fillMaxSize(),
         ) {
-            topBarRegister(navController)
+            TopBarRegister(navController)
+            Spacer(modifier = Modifier.height(150.dp))
+            Column (
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .background(color = Color(0xFFFFFFFF))
+                    .padding(15.dp)
+            ) {
+                Text(
+                    text = "Register",
+                    fontSize = 35.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Spacer(modifier = Modifier.height(70.dp))
+                Row (
+                    modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Phone Number: ",
+                        fontSize = 20.sp,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    TextField(
+                        value = phoneNumberTextField,
+                        onValueChange = {newPhoneNumber -> phoneNumberTextField = newPhoneNumber},
+                        label = {Text(phoneNumberTextField)}
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row (
+                    modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Username: ",
+                        fontSize = 20.sp,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    TextField(
+                        value = usernameTextField,
+                        onValueChange = {newUsername -> usernameTextField = newUsername},
+                        label = {Text(usernameTextField)}
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row (
+                    modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Password: ",
+                        fontSize = 20.sp,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    TextField(
+                        value = passwordTextField,
+                        onValueChange = {newPassword -> passwordTextField = newPassword},
+                        label = {Text(passwordTextField)}
+                    )
+                }
+                Spacer(modifier = Modifier.height(70.dp))
+                Button(
+                    modifier = Modifier
+                        .width(130.dp)
+                        .height(60.dp),
+                    onClick = { navController.navigate("Register") },
+                    content = {
+                        Text(text = "Register", fontSize = 21.sp, fontWeight = FontWeight.SemiBold)
+                    }
+                )
+            }
         }
     }
 }
@@ -181,7 +245,8 @@ fun RegisterScreen() {
 @Composable
 fun LoginScreenPreview() {
     RapidChatTheme {
-        LoginScreen()
+        val navController = rememberNavController()
+        LoginScreen(navController)
     }
 }
 
@@ -189,6 +254,7 @@ fun LoginScreenPreview() {
 @Composable
 fun RegisterScreenPreview() {
     RapidChatTheme {
-        RegisterScreen()
+        val navController = rememberNavController()
+        RegisterScreen(navController)
     }
 }

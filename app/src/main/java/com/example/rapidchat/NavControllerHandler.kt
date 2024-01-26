@@ -13,8 +13,8 @@ class NavControllerHandler {
     @Composable
     fun Navigation(navController: NavHostController) {
         NavHost(navController = navController, startDestination = "Login") {
-            composable(route = "Login") { LoginScreen() }
-            composable(route = "Register") { RegisterScreen() }
+            composable(route = "Login") { LoginScreen(navController) }
+            composable(route = "Register") { RegisterScreen(navController) }
         }
     }
 
